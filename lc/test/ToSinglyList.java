@@ -13,7 +13,7 @@ public class ToSinglyList {
    * @param input the input string.
    * @return the head of the list.
    */
-  public ListNode intList(String input) {
+  public static ListNode intList(String input) {
     if (null == input) throw new IllegalArgumentException();
 
     String[] segments = input.substring(1, input.length() - 1).split(",");
@@ -31,8 +31,7 @@ public class ToSinglyList {
   public static void main(String[] args) {
     String input = "[1, 2, 3]";
 
-    ToSinglyList tsl = new ToSinglyList();
-    ListNode head = tsl.intList(input);
+    ListNode head = ToSinglyList.intList(input);
     ListNode temp = head;
     while (temp != null) {
       System.out.print(temp.val + " ");

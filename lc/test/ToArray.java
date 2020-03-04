@@ -20,7 +20,7 @@ public class ToArray {
    * @param input the input string.
    * @return an integer array containing numbers from the input string.
    */
-  public int[] intArray(String input) {
+  public static int[] intArray(String input) {
     if (null == input) throw new IllegalArgumentException();
     
     String[] segments = input.substring(1, input.length() - 1).split(",");
@@ -36,8 +36,7 @@ public class ToArray {
   public static void main(String[] args) {
     String input = "[1, 2, 3]";
 
-    ToArray ta = new ToArray();
-    int[] nums = ta.intArray(input);
+    int[] nums = ToArray.intArray(input);
     for (int x : nums) {
       System.out.print(x + " ");
     }
