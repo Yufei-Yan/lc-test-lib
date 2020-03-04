@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"java.dependency.packagePresentation": "hierarchical",
+		"java.project.referencedLibraries": [
+			"lib/**/*.jar",
+			"/home/yufeiyan/workspaces/**/*.jar"
+		]
+	}
+}
