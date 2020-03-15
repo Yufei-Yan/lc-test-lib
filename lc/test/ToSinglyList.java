@@ -6,6 +6,12 @@
  */
 package lc.test;
 
+/**
+ * Convert the input string to an singly linked list.
+ * 
+ * @author Yufei Yan
+ * @version 0.0.1
+ */
 public class ToSinglyList {
 
   /**
