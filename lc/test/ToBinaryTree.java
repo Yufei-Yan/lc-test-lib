@@ -46,27 +46,18 @@ public class ToBinaryTree {
 
     while (i < len) {
       cur = queue.poll();
-      if (null == cur) continue;
 
-      if (i < len && segments[i].trim().equals("null")) {
-        ++i;
-      } else  {
-        if (i < len) {
-          cur.left = new TreeNode(Integer.parseInt(segments[i].trim()));
-          queue.offer(cur.left);
-          ++i;
-        }
+      if (!segments[i].trim().equals("null")) {
+        cur.left = new TreeNode(Integer.parseInt(segments[i].trim()));
+        queue.offer(cur.left);
       }
+      ++i;
 
-      if (i < len && segments[i].trim().equals("null")) {
-        ++i;
-      } else {
-        if (i < len) {
-          cur.right = new TreeNode(Integer.parseInt(segments[i].trim()));
-          queue.offer(cur.right);
-          ++i;
-        }
+      if (i < len && !segments[i].trim().equals("null")) {
+        cur.right = new TreeNode(Integer.parseInt(segments[i].trim()));
+        queue.offer(cur.right);
       }
+      ++i;
       
     }
 
