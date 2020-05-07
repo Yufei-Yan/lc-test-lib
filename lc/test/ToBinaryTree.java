@@ -2,63 +2,53 @@
  * @Author: Yufei Yan (yanyufei11111@163.com) 
  * @Date: 2020-03-14 20:14:44 
  * @Last Modified by: Yufei Yan
- * @Last Modified time: 2020-03-14 21:37:27
+ * @Last Modified time: 2020-05-06 05:29:18
  */
 package lc.test;
 
-import lc.verification.Verify;
 import java.util.Queue;
 import java.util.ArrayDeque;
 /**
  * Convert the input string to a binary tree.
  * 
  * @author Yufei Yan
- * @version 0.0.1
+ * @version 0.1.1
  */
-public class ToBinaryTree {
+public class ToBinaryTree<T extends Comparable<? super T>> {
+  private T[] arr;
+
+  public ToBinaryTree(T[] input) {
+    arr = input;
+  }
   /**
    * Convert the input string a binary tree which has integer values.
    * 
    * @param input the input string.
    * @return the root of the binary tree.
    */
-  public static TreeNode intBinaryTree(String input) {
-    try {
-      Verify.verifyString(input);
-    } catch (IllegalArgumentException e) {
-      System.out.println(e.getMessage());
-      System.out.println("Failed to convert the input string to binary tree.");
-      System.out.println("null pointer is returned.");
-      return null;
-    }
+  public TreeNode<T> binaryTree() {
+    if (null == arr || 0 == arr.length) return null;
 
-    String[] segments = input.substring(1, input.length() - 1).split(",");
-
-    if (segments[0].trim().equals("null")) return null;
-
-    TreeNode root = new TreeNode(Integer.parseInt(segments[0].trim()));
-    Queue<TreeNode> queue = new ArrayDeque<>();
-    TreeNode cur = null;
+    TreeNode<T> root = new TreeNode<>(arr[0]);
+    Queue<TreeNode<T>> queue = new ArrayDeque<>();
+    TreeNode<T> cur = null;
     queue.offer(root);
-
-    int len = segments.length;
+    
+    int len = arr.length;
     int i = 1;
-
     while (i < len) {
       cur = queue.poll();
-
-      if (!segments[i].trim().equals("null")) {
-        cur.left = new TreeNode(Integer.parseInt(segments[i].trim()));
+      if (arr[i] != null) {
+        cur.left = new TreeNode<>(arr[i]);
         queue.offer(cur.left);
       }
       ++i;
 
-      if (i < len && !segments[i].trim().equals("null")) {
-        cur.right = new TreeNode(Integer.parseInt(segments[i].trim()));
+      if (i < len && arr[i] != null) {
+        cur.right = new TreeNode<>(arr[i]);
         queue.offer(cur.right);
       }
       ++i;
-      
     }
 
     return root;
@@ -72,22 +62,22 @@ public class ToBinaryTree {
   public static void main(String[] args) {
     //String input = "[10,5,15,3,7,null,18]";
     String input = "[10,5,15,3,7,13,18,1,null,6]";
+    Integer[] arr = ToArray.integerArray(input);
 
-    TreeNode root = ToBinaryTree.intBinaryTree(input);
-    if (Verify.verifyBST(root)) {
-      TreeNode cur = null;
+    ToBinaryTree<Integer> toBT = new ToBinaryTree<>(arr);
+    TreeNode<Integer> root = toBT.binaryTree();
 
-      Queue<TreeNode> queue = new ArrayDeque<TreeNode>();
-      queue.offer(root);
-      while (!queue.isEmpty()) {
-        cur = queue.poll();
+    // level order traversal to show all nodes
+    TreeNode<Integer> cur = null;
+    Queue<TreeNode<Integer>> queue = new ArrayDeque<>();
+    queue.offer(root);
 
-        if (cur != null)  System.out.print(cur.val + " ");
-
-        if (null != cur.left) queue.offer(cur.left);
-        if (null != cur.right) queue.offer(cur.right);
-      }
-      System.out.println();
+    while (!queue.isEmpty()) {
+      cur = queue.poll();
+      System.out.print(cur.val + " ");
+      if (null != cur.left) queue.offer(cur.left);
+      if (null != cur.right) queue.offer(cur.right);
     }
+    System.out.println();
   }
 }

@@ -32,17 +32,17 @@ public class Verify {
       throw new IllegalArgumentException("The input string has to start with \"[\" and end with \"]\"");
   }
 
-  public static boolean verifyBST(TreeNode root) {
-    return new Verify().verifyBST(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
-  }
+  // public static boolean verifyBST(TreeNode root) {
+  //   return new Verify().verifyBST(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
+  // }
 
-  private boolean verifyBST(TreeNode root, int min, int max) {
-    if (null == root) return true;
+  // private boolean verifyBST(TreeNode root, int min, int max) {
+  //   if (null == root) return true;
 
-    if (root.val <= min || root.val >= max) return false;
+  //   if (root.val <= min || root.val >= max) return false;
 
-    return verifyBST(root.left, min, root.val) && verifyBST(root.right, root.val, max);
-  }
+  //   return verifyBST(root.left, min, root.val) && verifyBST(root.right, root.val, max);
+  // }
 
   public static void main(String[] args) {
     String test1 = null;
