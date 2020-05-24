@@ -11,7 +11,7 @@ import lc.test.TreeNode;
  * Class to make sure the input string is legal.
  * 
  * @author Yufei Yan
- * @version 0.0.1
+ * @version 0.1.1
  */
 public class Verify {
 
@@ -30,6 +30,26 @@ public class Verify {
 
     if ('[' != s.trim().charAt(0) || ']' != s.trim().charAt(s.trim().length() - 1))
       throw new IllegalArgumentException("The input string has to start with \"[\" and end with \"]\"");
+  }
+
+  /**
+   * To verify the input string to be converted to a 2D array.
+   * 
+   * @param s the input string.
+   */
+  public static void verify2DString(String s) {
+    Verify.verifyString(s);
+
+    int left = 0;
+    int right = 0;
+    char[] ch = s.toCharArray();
+
+    for (int i = 0; i < ch.length; ++i) {
+      if (ch[i] == '[') ++left;
+      else if (ch[i] == ']') ++right;
+
+      if (right > left) throw new IllegalArgumentException("The input string has illegal matching brackets");
+    }
   }
 
   // public static boolean verifyBST(TreeNode root) {
@@ -70,6 +90,20 @@ public class Verify {
 
     try {
       Verify.verifyString(test4);
+    } catch (IllegalArgumentException e) {
+      System.out.println(e.getMessage());
+    }
+
+    String test5 = "[[1,2,3],[4,5,6]]";
+    String test6 = "[]1,2,3],[4,5,6]]";
+    try {
+      Verify.verify2DString(test5);
+    } catch (IllegalArgumentException e) {
+      System.out.println(e.getMessage());
+    }
+
+    try {
+      Verify.verify2DString(test6);
     } catch (IllegalArgumentException e) {
       System.out.println(e.getMessage());
     }

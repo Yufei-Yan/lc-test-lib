@@ -41,6 +41,41 @@ public class ToArray {
   }
 
   /**
+   * Convert the input string to a 2D character array.
+   * 
+   * @param input the input string.
+   * @return a 2D character array
+   */
+  public static char[][] twoDCharArray(String input) {
+    return null;
+  }
+
+  public static int[][] twoDIntArray(String input) throws NumberFormatException {
+    Verify.verify2DString(input);
+
+    String s = input.substring(1, input.length() - 1) + ",";
+    String reg = "], *";
+    String[] segments = s.split(reg);
+
+    String[][] subSegments = new String[segments.length][];
+    for (int i = 0; i < segments.length; ++i) {
+      subSegments[i] = segments[i].substring(1, segments[i].length()).split(",");
+    }
+
+    int[][] result = new int[segments.length][];
+    for (int i = 0; i < subSegments.length; ++i) {
+      result[i] = new int[subSegments[i].length];
+      for (int j = 0; j < subSegments[i].length; ++j) {
+        result[i][j] = Integer.parseInt(subSegments[i][j].trim());
+        System.out.print(subSegments[i][j] + ":" + result[i][j] + ", ");
+      }
+      System.out.println();
+    }
+
+    return result;
+  }
+
+  /**
    * Convert the input string to an integer (object) array.
    * 
    * @param input the input string.
@@ -80,5 +115,14 @@ public class ToArray {
       else System.out.print(x + " ");
     }
     System.out.println();
+
+    String input3 = "[[1,2,3], [4,5,6]]";
+    int[][] nums3 = ToArray.twoDIntArray(input3);
+    for (int i = 0; i < nums3.length; ++i) {
+      for (int j = 0; j < nums3[i].length; ++j) {
+        System.out.print(nums3[i][j] + ", ");
+      }
+      System.out.println();
+    }
   }
 }

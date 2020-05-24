@@ -1,0 +1,10 @@
+dist: xenial
+os:
+  - linux
+  - osx
+  - windows
+
+language: java
+jdk: oraclejdk8
+
+script: allInOne.bash
