@@ -2,10 +2,9 @@ dist: trusty
 os:
   - linux
   - osx
-  - windows
 
 language: java
 jdk: 
-  - openjdk8
+  - openjdk9
 
 script: ./allInOne.bash
